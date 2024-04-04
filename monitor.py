@@ -1,4 +1,3 @@
-import time
 import socket
 import netifaces
 from scapy.all import *
@@ -24,7 +23,7 @@ class PacketSnifferCLI:
             while self.sniffing:
                 packets = sniff(count=10)
                 self.captured_packets.extend(packets)
-                time.sleep(1)
+                # Removed time.sleep(1)
 
         self.sniff_thread = Thread(target=sniff_packets)
         self.sniff_thread.start()
@@ -42,7 +41,8 @@ class PacketSnifferCLI:
             print("No packets captured yet.")
             return
 
-        filename = f"captured_packets_{time.strftime('%H-%M-%S')}.pcap"
+        # Removed time-related formatting
+        filename = f"captured_packets.pcap"
         wrpcap(filename, self.captured_packets)
         print(f"Packets have been exported to {filename}")
 

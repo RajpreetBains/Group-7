@@ -110,5 +110,5 @@ def get_unusual_packet(packet_info):
 packets = capture_packets()
 packet_info = get_packet_info(packets)
 display_packet_info(packet_info)
-unusual_packets = get_unusual_packets(packet_info)
+unusual_packets = get_unusual_packet(packet_info)
 display_packet_info(unusual_packets)

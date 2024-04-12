@@ -23,6 +23,8 @@ def capture_packets():
   return ip_packets
 
 # function to extract packet info
+# @param captured packets
+# @return packet information
 def get_packet_info(packets):
   # list of dictionaries to store packet info
   packet_info = []
@@ -79,8 +81,34 @@ def display_packet_info(packet_info):
   # print table
   print(table)
 
+# method to get unusually large packets
+# @param list of packet information
+# @return list of unusually large packets
+def get_unusual_packet(packet_info):
+  # create list to store packet sizes
+  packet_lengths = [packet["Packet Length"] for packet in packet_info]
+  # calculate statistics
+  mean = statistics.mean(packet_lengths)
+  st_dev = statistics.stdev(packet_lengths)
+  # create threshold
+  threshold = mean + (st_dev * 2)
+  # create list to store packets above threshold
+  above_threshold = []
+  # for loop to iterate through packet info
+  for packet in packet_info:
+    # compare packet length to threshold
+    if packet["Packet Length"] > threshold:
+      # add packet to list
+      above_threshold.append(packet)
+  # return list of packets above threshold
+  return above_threshold
+
+
+
 
 
 packets = capture_packets()
 packet_info = get_packet_info(packets)
 display_packet_info(packet_info)
+unusual_packets = get_unusual_packets(packet_info)
+display_packet_info(unusual_packets)

@@ -67,7 +67,7 @@ def get_packet_info(packets):
     packet_info.append(packet_dict)
   return packet_info
 
-# method to display packet information in a table
+# function to display packet information in a table
 # @param packet_info
 def display_packet_info(packet_info):
   #check if packet_info has packets
@@ -86,7 +86,7 @@ def display_packet_info(packet_info):
   else:
     print("No packets found.")
 
-# method to get unusually large packets
+# function to get unusually large packets
 # @param list of packet information
 # @return list of unusually large packets
 def get_unusual_packets(packet_info):
@@ -108,7 +108,7 @@ def get_unusual_packets(packet_info):
   # return list of packets above threshold
   return above_threshold
   
-# method to export packets to a file
+# function to export packets to a file
 # @param packet_info
 def export_packets(packet_info):
   if packet_info:
@@ -118,7 +118,7 @@ def export_packets(packet_info):
   else:
     print("No packets found to export.")
 
-# main method
+
 packets = capture_packets()
 packet_info = get_packet_info(packets)
 unusual_packets = get_unusual_packets(packet_info)
